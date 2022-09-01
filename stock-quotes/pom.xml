@@ -23,7 +23,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>17</java.version>
 		<surefire.version>3.0.0-M7</surefire.version>
-		<reactor-bom.version>Bismuth-BUILD-SNAPSHOT</reactor-bom.version>
 	</properties>
 
 	<dependencies>
@@ -46,6 +45,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor.netty</groupId>
+			<artifactId>reactor-netty</artifactId>
+			<version>1.0.22</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

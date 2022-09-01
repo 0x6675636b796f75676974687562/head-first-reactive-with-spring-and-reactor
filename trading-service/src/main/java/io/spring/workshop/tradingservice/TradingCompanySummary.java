@@ -1,8 +1,5 @@
 package io.spring.workshop.tradingservice;
 
-import io.spring.workshop.stockdetails.TradingCompany;
-import io.spring.workshop.stockquotes.Quote;
-
 public class TradingCompanySummary {
 
 	private final Quote latestQuote;

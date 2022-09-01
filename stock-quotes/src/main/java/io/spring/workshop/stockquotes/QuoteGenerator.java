@@ -37,7 +37,7 @@ public class QuoteGenerator {
 	}
 
 	private void initializeQuotes() {
-		this.prices.add(new Quote("CTXS", 82.26));
+		this.prices.add(new Quote("PVTL", 82.26));
 		this.prices.add(new Quote("DELL", 63.74));
 		this.prices.add(new Quote("GOOG", 847.24));
 		this.prices.add(new Quote("MSFT", 65.11));
@@ -51,7 +51,7 @@ public class QuoteGenerator {
 		return Flux.interval(Duration.ofMillis(200))
 				.onBackpressureDrop()
 				.map(this::generateQuotes)
-				.flatMapIterable(quotes -> quotes)
+				.flatMap(Flux::fromIterable)
 				.share();
 	}
 
@@ -60,7 +60,7 @@ public class QuoteGenerator {
 		return prices.stream()
 				.map(baseQuote -> {
 					BigDecimal priceChange = baseQuote.getPrice()
-							.multiply(new BigDecimal(0.05 * this.random.nextDouble()), this.mathContext);
+							.multiply(BigDecimal.valueOf(0.05 * this.random.nextDouble()), this.mathContext);
 
 					Quote result = new Quote(baseQuote.getTicker(), baseQuote.getPrice().add(priceChange));
 					result.setInstant(instant);
