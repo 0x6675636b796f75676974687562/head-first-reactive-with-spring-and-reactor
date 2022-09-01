@@ -156,7 +156,7 @@ First, create a `TradingCompanyController` annotated with `@RestController` and 
 Then add two new Controller methods in order to handle:
 
 * GET requests to  `"/details"`, returning all `TradingCompany` instances, serializing them with content-type `"application/json"`
-* GET requests to  `"/details/{ticker}"`, returning a single `TradingCompany` instance, serializing it with content-type `"application/json"`
+* GET requests to  `"/details/\{ticker}"`, returning a single `TradingCompany` instance, serializing it with content-type `"application/json"`
 
 It can be started from your IDE or with `mvn spring-boot:run` and it should run a Netty server on port 8082.
 You should see in the logs something like:
@@ -177,7 +177,7 @@ Create a `TradingCompanyClient` annotated with `@Component`.
 Then add two methods:
 
 * `findAllCompanies` will return a `Flux<TradingCompany>` by using the webClient to get data from the `/details` endpoint from the Stock details application
-* `getTradingCompany` will return a `Mono<TradingCompany>` by using the webClient to get data from the `/details/{ticker}` endpoint from the Stock details application
+* `getTradingCompany` will return a `Mono<TradingCompany>` by using the webClient to get data from the `/details/\{ticker}` endpoint from the Stock details application
   - If no trading company is found for the given ticker, the `Mono` will complete without any data. Instead, we will emit a `TickerNotFoundException` error using the `switchIfEmpty` operator.
 
 Let's expose the two `TradingCompanyClient` methods with a local `TradingCompanyController`.
@@ -207,7 +207,7 @@ Copy the following class to your project.
 include::../trading-service/src/main/java/io/spring/workshop/tradingservice/TradingCompanySummary.java[]
 ----
 
-Now, add another method to the `QuotesController` which can handle requests to `/quotes/summary/{ticker}`.
+Now, add another method to the `QuotesController` which can handle requests to `/quotes/summary/\{ticker}`.
 
 * Use the `TradingCompanyClient` to get the details for the company with the given ticker
 * Create a `TradingCompanySummary` by composing the details with the latest quote from the `QuotesClient`
