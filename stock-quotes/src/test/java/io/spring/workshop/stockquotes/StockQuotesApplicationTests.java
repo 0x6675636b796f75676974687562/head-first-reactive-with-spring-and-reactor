@@ -29,11 +29,11 @@ public class StockQuotesApplicationTests {
 				webTestClient
 				// We then create a GET request to test an endpoint
 				.get().uri("/quotes")
-				.accept(MediaType.APPLICATION_STREAM_JSON)
+				.accept(MediaType.APPLICATION_NDJSON)
 				.exchange()
 				// and use the dedicated DSL to test assertions against the response
 				.expectStatus().isOk()
-				.expectHeader().contentType(MediaType.APPLICATION_STREAM_JSON)
+				.expectHeader().contentType(MediaType.APPLICATION_NDJSON)
 				.returnResult(Quote.class)
 				.getResponseBody()
 				.take(20)

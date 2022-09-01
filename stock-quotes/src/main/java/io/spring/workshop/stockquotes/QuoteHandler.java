@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.http.MediaType.APPLICATION_STREAM_JSON;
+import static org.springframework.http.MediaType.APPLICATION_NDJSON;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Component
@@ -20,7 +20,7 @@ public class QuoteHandler {
 
 	public Mono<ServerResponse> streamQuotes(ServerRequest request) {
 		return ok()
-				.contentType(APPLICATION_STREAM_JSON)
+				.contentType(APPLICATION_NDJSON)
 				.body(this.quoteGenerator.fetchQuoteStream(), Quote.class);
 	}
 }
